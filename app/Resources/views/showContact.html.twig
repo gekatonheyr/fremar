@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fremar contacts - show catalog{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(headerForm) }}
+        {{ form_widget(headerForm) }}
+        {{ form_end(headerForm) }}
+
+        {{ form_start(form) }}
+        <div>
+            {{ form_label(form.firstName, 'First name: ') }}
+            {{ form_widget(form.firstName)}}
+        </div>
+        <div>
+            {{ form_label(form.lastName, 'Last name: ') }}
+            {{ form_widget(form.lastName) }}
+        </div>
+        <div>
+            {{ form_label(form.telNumber, 'Telephone number: ') }}
+            {{ form_widget(form.telNumber) }}
+        </div>
+        <div>
+            {{ form_label(form.emailAddress, 'Email: ') }}
+            {{ form_widget(form.emailAddress) }}
+        </div>
+        <div>
+            {{ form_label(form.resPlaceName, 'Residence:') }}
+            {{ form_widget(form.resPlaceName) }}
+        </div>
+        <div>
+            {{ form_label(form.resPlaceDistrict, 'District: ') }}
+            {{ form_widget(form.resPlaceDistrict, {'attr' : {'onchange' : 'getStreetsList(document.getElementById("new_contact_resPlaceStreet"), this.value);'}}) }}
+        </div>
+        <div>
+            {{ form_label(form.resPlaceStreet, 'Street: ') }}
+            {{ form_widget(form.resPlaceStreet, {'attr' : {'disabled' : 'disabled'}}) }}
+        </div>
+        <div>
+            {{ form_label(form.resPlaceHouseNumber, 'House number: ') }}
+            {{ form_widget(form.resPlaceHouseNumber) }}
+        </div>
+        <div>
+            {{ form_label(form.resPlaceAppartNumber, "Appartments number: ") }}
+            {{ form_widget(form.resPlaceAppartNumber) }}
+        </div>
+
+        {{ form_widget(form.editEntry, {'attr' : {'class':'btn btn-primary'}}) }}
+        {{ form_widget(form.deleteEntry, {'attr' : {'class':'btn btn-danger'}}) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
