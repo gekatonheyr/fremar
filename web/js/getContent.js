@@ -21,22 +21,23 @@ function getXmlHttp(){
 
 function getStreetsList(injectedElement, value)
 {
+    injectedElement.setAttribute('disabled', 'disabled');
     var xmlhttp = getXmlHttp();
     xmlhttp.open('POST', '/getStreetsList', true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4) {
             if(xmlhttp.status == 200) {
-                //alert(xmlhttp.responseText);
+                while(injectedElement.firstChild){
+                    injectedElement.removeChild(injectedElement.firstChild);
+                }
                 var arr = xmlhttp.responseText.split(';');
                 arr.forEach(function(item){
-                    //alert(item);
                     var node = document.createElement('option');
                     var textNode = document.createTextNode(item);
                     node.appendChild(textNode);
                     injectedElement.appendChild(node);
                 });
-
                 injectedElement.removeAttribute("disabled");
             }
         }

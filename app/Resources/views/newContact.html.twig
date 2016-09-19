@@ -7,48 +7,61 @@
 
 {% block body %}
     <div class="container">
-        {{ form_start(form) }}
-        <div>
-            {{ form_label(form.firstName, 'Enter first name here: ') }}
-            {{ form_widget(form.firstName)}}
-        </div>
-        <div>
-            {{ form_label(form.lastName, 'Enter last name here: ') }}
-            {{ form_widget(form.lastName) }}
-        </div>
-        <div>
-            {{ form_label(form.telNumber, 'Telephone number place here: ') }}
-            {{ form_widget(form.telNumber) }}
-        </div>
-        <div>
-            {{ form_label(form.emailAddress, 'Email address of the contact: ') }}
-            {{ form_widget(form.emailAddress) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceName, 'Residence place put here (city, town etc.: )') }}
-            {{ form_widget(form.resPlaceName) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceDistrict, 'Choose district here: ') }}
-            {{ form_widget(form.resPlaceDistrict, {'attr' : {'onchange' : 'getStreetsList(document.getElementById("new_contact_resPlaceStreet"), this.value);'}}) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceStreet, 'Choose street here: ') }}
-            {{ form_widget(form.resPlaceStreet, {'attr' : {'disabled' : 'disabled'}}) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceHouseNumber, 'Enter the house number here: ') }}
-            {{ form_widget(form.resPlaceHouseNumber) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceAppartNumber, "And appartments number set here: ") }}
-            {{ form_widget(form.resPlaceAppartNumber) }}
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="col-md-4"><h4>{{ form_label(form.firstName, 'Enter first name here: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.firstName,{'attr' : {'class':'form-control input-md'}})}}</div>
         </div>
 
-        {{ form_widget(form.saveAndRet2Cat, {'attr' : {'class':'btn btn-primary'}}) }}
-        {{ form_widget(form.saveAndAddAnother, {'attr' : {'class':'btn btn-warning'}}) }}
-        {{ form_widget(form.clearData, {'attr' : {'class':'btn btn-danger'}}) }}
-        {{ form_end(form) }}
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.lastName, 'Enter last name here: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.lastName,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.telNumber, 'Telephone number place here: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.telNumber,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.emailAddress, 'Email address of the contact: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.emailAddress,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.resPlaceName, 'Residence place put here (city, town etc):') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.resPlaceName,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.resPlaceDistrict, 'Choose district here: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.resPlaceDistrict, {'attr' : {'class':'form-control input-md', 'onchange' : 'getStreetsList(document.getElementById("new_contact_resPlaceStreet"), this.value);'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.resPlaceStreet, 'Choose street here: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.resPlaceStreet,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.resPlaceHouseNumber, 'Enter the house number here: ') }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.resPlaceHouseNumber,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><h4>{{ form_label(form.resPlaceAppartNumber, "And appartments number set here: ") }}</h4></div>
+            <div class="col-md-6">{{ form_widget(form.resPlaceAppartNumber,{'attr' : {'class':'form-control input-md'}}) }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 text-center">
+                {{ form_widget(form.saveAndRet2Cat, {'attr' : {'class':'btn btn-primary'}}) }}
+                {{ form_widget(form.saveAndAddAnother, {'attr' : {'class':'btn btn-warning'}}) }}
+                {{ form_widget(form.clearData, {'attr' : {'class':'btn btn-danger'}}) }}
+            </div>
+        </div>
+            {{ form_end(form) }}
+        </div>
     </div>
 
 {% endblock %}

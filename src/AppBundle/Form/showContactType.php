@@ -13,6 +13,7 @@ class showContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $contact = $builder->getData();
         $builder
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
@@ -23,8 +24,8 @@ class showContactType extends AbstractType
             ->add('resPlaceStreet', TextType::class)
             ->add('resPlaceHouseNumber', TextType::class)
             ->add('resPlaceAppartNumber', TextType::class)
-            ->add('editEntry', SubmitType::class, array('label'=>'Edit'))
-            ->add('deleteEntry', SubmitType::class, array('label'=>'Delete'));
+            ->add('editEntry', SubmitType::class, array('label'=>'Edit', 'attr'=> ['value'=>$contact->getId()]))
+            ->add('deleteEntry', SubmitType::class, array('label'=>'Delete', 'attr'=> ['value'=>$contact->getId()]));
     }
 
     public function configureOptions(OptionsResolver $resolver)

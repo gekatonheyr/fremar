@@ -30,7 +30,7 @@ class newContactType extends AbstractType
             ->add('resPlaceDistrict', ChoiceType::class, array('placeholder'=>'Please select your choice',
                 'choices' => $districts_list))
             ->add('resPlaceStreet', ChoiceType::class, array('placeholder'=>'Please select your choice',
-                ))
+                'disabled'=>true))
             ->add('resPlaceHouseNumber', TextType::class)
             ->add('resPlaceAppartNumber', TextType::class)
             ->add('saveAndRet2Cat', SubmitType::class, array('label'=>'Save data and return to catalog'))

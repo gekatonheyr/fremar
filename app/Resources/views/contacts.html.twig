@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
+    <div class="container text-center">
             {{ form_start(form) }}
-            Welcome to fremar contacts catalog. Please choose the action to perform: <br>
+            <h2>Welcome to FREMAR contacts catalog. Please choose the action to perform: </h2><br>
             {{ form_widget(form.getContactsList, {'attr' : {'class':'btn btn-primary'}}) }}
             {{ form_widget(form.addNewContact, {'attr' : {'class':'btn btn-warning'}}) }}
             {{ form_end(form) }}

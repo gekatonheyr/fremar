@@ -4,51 +4,77 @@
 
 {% block body %}
     <div class="container">
-        {{ form_start(headerForm) }}
-        {{ form_widget(headerForm) }}
-        {{ form_end(headerForm) }}
-
-        {{ form_start(form) }}
-        <div>
-            {{ form_label(form.firstName, 'First name: ') }}
-            {{ form_widget(form.firstName)}}
-        </div>
-        <div>
-            {{ form_label(form.lastName, 'Last name: ') }}
-            {{ form_widget(form.lastName) }}
-        </div>
-        <div>
-            {{ form_label(form.telNumber, 'Telephone number: ') }}
-            {{ form_widget(form.telNumber) }}
-        </div>
-        <div>
-            {{ form_label(form.emailAddress, 'Email: ') }}
-            {{ form_widget(form.emailAddress) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceName, 'Residence:') }}
-            {{ form_widget(form.resPlaceName) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceDistrict, 'District: ') }}
-            {{ form_widget(form.resPlaceDistrict, {'attr' : {'onchange' : 'getStreetsList(document.getElementById("new_contact_resPlaceStreet"), this.value);'}}) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceStreet, 'Street: ') }}
-            {{ form_widget(form.resPlaceStreet, {'attr' : {'disabled' : 'disabled'}}) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceHouseNumber, 'House number: ') }}
-            {{ form_widget(form.resPlaceHouseNumber) }}
-        </div>
-        <div>
-            {{ form_label(form.resPlaceAppartNumber, "Appartments number: ") }}
-            {{ form_widget(form.resPlaceAppartNumber) }}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {{ form_start(headerForm) }}
+                <h3>You are in the catalog view mode now, but still able to create new contact by pressing this button</h3><br>
+                {{ form_widget(headerForm.createNewEntry, {'attr' : {'class':'btn btn-warning'}}) }} <br>
+                {{ form_end(headerForm) }}
+            </div>
         </div>
 
-        {{ form_widget(form.editEntry, {'attr' : {'class':'btn btn-primary'}}) }}
-        {{ form_widget(form.deleteEntry, {'attr' : {'class':'btn btn-danger'}}) }}
-        {{ form_end(form) }}
+        <table class="table table-hover">
+            <tbody>
+            {% for form in formsCollection %}
+            <tr>
+                {{ form_start(form) }}
+                <td>
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.firstName, 'First name: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.firstName, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}})}} </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.lastName, 'Last name: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.lastName, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }} </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.telNumber, 'Telephone number: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.telNumber, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.emailAddress, 'Email: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.emailAddress, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.resPlaceName, 'Residence:') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.resPlaceName, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.resPlaceDistrict, 'District: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.resPlaceDistrict, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.resPlaceStreet, 'Street: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.resPlaceStreet, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.resPlaceHouseNumber, 'House number: ') }}</div>
+                        <div class="col-md-6">{{ form_widget(form.resPlaceHouseNumber, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">{{ form_label(form.resPlaceAppartNumber, "Appartments number: ") }}</div>
+                        <div class="col-md-6">{{ form_widget(form.resPlaceAppartNumber, {'attr' : {'disabled' : 'disabled', 'class':'form-control input-md'}}) }}</div>
+                    </div>
+                </td>
+                <td>
+                    {{ form_widget(form.editEntry, {'attr' : {'class':'btn btn-primary'}}) }}
+                    {{ form_widget(form.deleteEntry, {'attr' : {'class':'btn btn-danger', 'onclick':'return confirm("Are u shure deleting this contact?") ? true : false;'}}) }}
+                    {{ form_end(form) }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 
 {% endblock %}
